@@ -28,7 +28,9 @@ async function main() {
     .addRow('Market Cap', quote.marketCap);
   
   table.setStyle('unicode-mix')
+  table.setJustify()
   console.log(table.toString())
+  console.log(table.transpose().setStyle('unicode-mix').toString())
 }
 
 (async () => {
