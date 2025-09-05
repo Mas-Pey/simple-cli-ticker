@@ -7,11 +7,15 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "ascii-table3": "^1.0.1",
     "commander": "^14.0.0",
     "yahoo-finance2": "^2.13.3"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
   }
 }
