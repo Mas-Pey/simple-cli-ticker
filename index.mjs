@@ -6,6 +6,9 @@ const program = new Command()
 const table = new AsciiTable3()
 
 export async function getData(ticker) {
+  if(!ticker){
+    throw new Error('Ticker is required')
+  }
   const quote = await yahooFinance.quote(ticker)
   return {
     symbol: quote.symbol,
@@ -41,13 +44,16 @@ async function main() {
     .option('-t, --ticker <string>', 'name of equity')
 
   program.parse()
-    const options = program.opts()
+  
+  const options = program.opts()
   
   showTable(await getData(options.ticker))  
 }
 
-try {
-  await main()
-} catch (e) {
-  console.error(e)
+if (import.meta.url === `file://${process.argv[1]}`) {
+  try {
+    await main()
+  } catch (e) {
+    console.error(e)
+  }
 }

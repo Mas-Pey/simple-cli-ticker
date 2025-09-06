@@ -12,11 +12,7 @@ test('can get data from yahoo finance using ticker parameter', async () => {
 })
 
 test('cannot get data missing ticker symbol', async () => {
-    try {
-     await getData()   
-    } catch (error) {
-     expect(error).toBeTruthy()   
-    }
+    await expect(getData()).rejects.toThrow('Ticker is required')
 })
 
 test('can show table', () => {
