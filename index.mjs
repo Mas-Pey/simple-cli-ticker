@@ -1,7 +1,9 @@
+import { fileURLToPath } from 'url'
 import yahooFinance from 'yahoo-finance2'
 import { Command } from 'commander'
 import { AsciiTable3 } from 'ascii-table3'
 
+const __filename = fileURLToPath(import.meta.url)
 const program = new Command()
 const table = new AsciiTable3()
 
@@ -36,7 +38,6 @@ export function showTable(data){
   table.setStyle('unicode-mix').setJustify()
   console.log(table.toString())
   return table.toString()
-
 }
 
 async function main() {
@@ -50,10 +51,10 @@ async function main() {
   showTable(await getData(options.ticker))  
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (__filename === process.argv[1]) {
   try {
-    await main()
+    await main();
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 }
